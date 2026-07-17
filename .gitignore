@@ -39,3 +39,14 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+# Temporary scan files
+scan_out.txt
+unicode_scan.py
+unicode_scan.ipynb
+
+# Local tools
+.freebuff/
+
+# Archives
+*.zip
