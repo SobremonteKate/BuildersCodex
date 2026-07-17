@@ -1,0 +1,81 @@
+// The six monthly "levels" that drive the Levels section and progress math.
+export const LEVELS = [
+  {
+    num: "01", colorKey: "fullstack", name: "Foundation Forger", month: "JULY",
+    track: "🔵 FULL-STACK", xp: 1000, unlocks: "Cloud track",
+    quests: [
+      "Learn Git branching, rebasing, and PR workflow (not just `add/commit/push`)",
+      "Refactor `marlehoteldb` repo: clean structure, real README, remove dead code",
+      "Add TypeScript to one existing project (React or Node side)",
+      "Build Portfolio Website v1 skeleton in Next.js — no design polish yet, just structure + deploy pipeline",
+      "Set role-based folder restructuring for marlehoteldb (superadmin / admin / employee) — the pending task you already flagged",
+    ],
+    boss: "Portfolio v1 is live on a real URL, and `marlehoteldb` has a professional README + clean commit history.",
+    rewardIcon: "🎁", reward: "Unlocks Level 2 — AWS Educate + Docker access. Badge: **Foundation Forger**.",
+  },
+  {
+    num: "02", colorKey: "cloud", name: "Cloud Architect Apprentice", month: "AUGUST",
+    track: "🟠 CLOUD", xp: 1000, unlocks: "DevOps track",
+    quests: [
+      "AWS Educate — Cloud Computing path: EC2, S3, RDS, IAM labs only (skip generic intro slides)",
+      "Docker fundamentals via FreeCodeCamp's Docker course — build & run images, volumes, networking",
+      "Containerize `marlehoteldb` (Dockerfile + docker-compose for app + MySQL)",
+      "Deploy containerized capstone to AWS (EC2 or Elastic Beanstalk) with RDS as the database",
+      "Point a custom domain / subdomain at the deployment",
+    ],
+    boss: "`marlehoteldb` is live on AWS, containerized, on a custom domain, staying inside free-tier limits.",
+    rewardIcon: "🎁", reward: "Unlocks Level 3 — GitHub Actions + IaC. Badges: **First Docker Container**, **First AWS Deployment**.",
+  },
+  {
+    num: "03", colorKey: "cloud", name: "DevOps Engineer", month: "SEPTEMBER",
+    track: "🟠 DEVOPS", xp: 1200, unlocks: "Security track",
+    quests: [
+      "GitHub Actions basics — build, test, and deploy workflows (official GitHub docs + FreeCodeCamp CI/CD course)",
+      "Wire a real CI/CD pipeline for `marlehoteldb`: push to `main` → auto-test → auto-deploy to AWS",
+      "AWS Educate — Terraform / IaC intro module only; write a minimal Terraform script for one resource (e.g. the S3 bucket or security group)",
+      "Add automated tests to capstone (PHPUnit or equivalent) — even basic coverage counts",
+      "Start scaffolding SentinelScan (Project 2) — repo init, CLI skeleton only, save the build for October",
+    ],
+    boss: "A push to `main` auto-deploys with zero manual steps. Record a 60-second screen capture of it happening — this becomes resume/LinkedIn content.",
+    rewardIcon: "🎁", reward: "Unlocks Level 4 — Security tools. Badges: **First CI/CD Pipeline**, **Infrastructure as Code**.",
+  },
+  {
+    num: "04", colorKey: "security", name: "Security Sentinel", month: "OCTOBER",
+    track: "🔴 SECURITY", xp: 1200, unlocks: "Data & AI track",
+    quests: [
+      "edX CS50 Cybersecurity — Weeks 1–4 only: Privacy/Confidentiality, Software Security, Cryptography basics (skip the rest unless time allows)",
+      "OffSec Kali Linux Revealed (PEN-103) — networking + reconnaissance chapters only, in a legal lab environment",
+      "Harden `marlehoteldb`: OWASP Top 10 pass (input validation, rate limiting, session/auth hardening, secrets out of code)",
+      "Build SentinelScan v1: header analysis + dependency CVE lookup (Python CLI)",
+      "Write and publish a short security audit report of your own capstone project",
+    ],
+    boss: "Ship SentinelScan v1 publicly on GitHub, and publish the capstone security audit as a README/PDF.",
+    rewardIcon: "🎁", reward: "Unlocks Level 5 — Data & AI tooling. Badges: **Kali Linux Initiate**, **OWASP Top 10 Defender**, **SentinelScan Shipped**.",
+  },
+  {
+    num: "05", colorKey: "data", name: "Data & AI Engineer", month: "NOVEMBER",
+    track: "🟢 DATA / AI", xp: 1200, unlocks: "Career polish",
+    quests: [
+      "AWS Educate — Analytics track: S3 + Glue + Athena labs only (skip ML theory modules you don't need yet)",
+      "Anthropic's free course modules — building real features with the Claude API (prompting, tool use basics)",
+      "Build DataPulse: ETL pipeline (Python/pandas) + Next.js dashboard with AI-generated insight summaries",
+      "Add an AI Feature v2 to `marlehoteldb` — go beyond the capstone's original AI integration (e.g. AI concierge assistant, smart booking suggestions)",
+      "Document both AI integrations clearly — recruiters need to see you understand what the AI is doing, not just that it's plugged in",
+    ],
+    boss: "DataPulse live demo + capstone AI Feature v2 shipped and documented.",
+    rewardIcon: "🎁", reward: "Unlocks Level 6 — Job-Ready. Badges: **First Data Pipeline**, **Claude Integration Live**, **DataPulse Shipped**.",
+  },
+  {
+    num: "06", colorKey: "career", name: "Job-Ready Professional", month: "DECEMBER",
+    track: "🟣 CAREER", xp: 1500, unlocks: "Application Season",
+    quests: [
+      "Contribute to at least 1 real open source repo (docs fix, small bug, or feature — start small)",
+      "Polish every README across all 4 repos to the same professional standard",
+      "Record short demo videos (60–90 sec each) for all 4 projects",
+      "Finalize resume, hit 100+ meaningful GitHub commits, update LinkedIn",
+      "Light interview prep: 15–20 LeetCode-style problems (easy/medium) + 3 system design walkthroughs of your own projects",
+    ],
+    boss: "**Launch Day** — portfolio live, resume final, LinkedIn updated, 4 projects demo-ready, applications ready to send.",
+    rewardIcon: "🏆", isFinal: true, reward: "Title unlocked — **Graduate-Ready Software Engineer**.",
+  },
+];
