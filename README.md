@@ -20,7 +20,6 @@ Career OS transforms a 6-month career roadmap into an interactive RPG-style dash
 - **Earn achievements** across Git, Cloud, Security, Data/AI, Portfolio, and Career categories
 - **Keep momentum visible** with XP tracking, progress bars, and floating particle effects
 
-=======
 <p align="center">
   <img src="public/demo.gif" alt="Career OS Demo" width="900">
 </p>
