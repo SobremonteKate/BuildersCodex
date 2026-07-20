@@ -46,7 +46,6 @@ Career OS transforms a 6-month career roadmap into an interactive RPG-style dash
 
 ---
 
-<<<<<<< HEAD
 =======
 ## 🖼️ Gallery
 
