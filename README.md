@@ -7,6 +7,7 @@
 ![Vite](https://img.shields.io/badge/Vite-8-646cff?style=flat-square&logo=vite)
 ![License](https://img.shields.io/badge/license-MIT-ffd166?style=flat-square)
 
+<<<<<<< HEAD
 ---
 
 ## 🎯 Overview
@@ -20,12 +21,71 @@ Career OS transforms a 6-month career roadmap into an interactive RPG-style dash
 - **Earn achievements** across Git, Cloud, Security, Data/AI, Portfolio, and Career categories
 - **Keep momentum visible** with XP tracking, progress bars, and floating particle effects
 
+=======
+<p align="center">
+  <img src="public/demo.gif" alt="Career OS Demo" width="900">
+</p>
+
+---
+
+## 🎯 Overview
+
+Career OS transforms a 6-month career roadmap into an interactive RPG-style dashboard. It's designed for self-directed learners who want to:
+
+- **Track progress** across two academies (Software Engineering & AI Automation)
+- **Stay consistent** with daily quests and streak tracking
+- **Visualize the journey** through 6 themed levels (months), each with quests, boss battles, and rewards
+- **Build portfolio projects** with structured documentation and GitHub integration
+- **Earn achievements** across Git, Cloud, Security, Data/AI, Portfolio, and Career categories
+- **Keep momentum visible** with XP tracking, progress bars, and floating particle effects
+
+>>>>>>> db78518 ([200~added dark/light mode, sound effects via Web Audio API + keyboard shortcuts (S/T), Demo GIF + 12-screenshot gallery in the README, Responsive layout.)
 <p align="center">
   <i>✦ Click any quest, boss battle, or achievement badge — progress saves automatically ✦</i>
 </p>
 
 ---
 
+<<<<<<< HEAD
+=======
+## 🖼️ Gallery
+
+<p align="center">
+  <img src="public/screenshots/01-hero.png" alt="Hero / Cover" width="900">
+  <br>
+  <em>Animated title, stat cards, and overall progress bar</em>
+</p>
+
+<table>
+  <tr>
+    <td width="33%"><img src="public/screenshots/02-dashboard.png" alt="Dashboard"><br><em>📊 Mission Control — XP, streaks, daily quests, academy progress</em></td>
+    <td width="33%"><img src="public/screenshots/03-academy-software.png" alt="Software Academy"><br><em>💻 Academy snapshot with level, XP, streak, and weekly goals</em></td>
+    <td width="33%"><img src="public/screenshots/04-academy-levels.png" alt="Academy Levels"><br><em>🏗️ Collapsible level progression with tech/skills/projects tracking</em></td>
+  </tr>
+  <tr>
+    <td width="33%"><img src="public/screenshots/05-skill-tree.png" alt="Skill Tree"><br><em>🌳 Skill tags + monthly unlock order</em></td>
+    <td width="33%"><img src="public/screenshots/06-levels.png" alt="Levels"><br><em>🎮 6 levels with quests, boss battles, and rewards</em></td>
+    <td width="33%"><img src="public/screenshots/07-achievements.png" alt="Achievements"><br><em>🏅 7 categories, 50+ achievements to unlock</em></td>
+  </tr>
+  <tr>
+    <td width="33%"><img src="public/screenshots/08-projects.png" alt="Projects"><br><em>🏗️ Project vault — software vs AI groupings</em></td>
+    <td width="33%"><img src="public/screenshots/09-github.png" alt="GitHub Plan"><br><em>🐙 GitHub repo strategy and workflow templates</em></td>
+    <td width="33%"><img src="public/screenshots/10-resume.png" alt="Resume Plan"><br><em>📄 Resume structure, skills, and certifications guidance</em></td>
+  </tr>
+  <tr>
+    <td width="33%"><img src="public/screenshots/11-portfolio.png" alt="Portfolio"><br><em>🖥️ Portfolio website structure guide</em></td>
+    <td width="33%"><img src="public/screenshots/12-checklist.png" alt="Checklist"><br><em>✅ Final December launch checklist</em></td>
+    <td width="33%"></td>
+  </tr>
+</table>
+
+<p align="center">
+  <sup>All screenshots captured from the live app. Colors, layout, and content reflect the actual dashboard.</sup>
+</p>
+
+---
+
+>>>>>>> db78518 ([200~added dark/light mode, sound effects via Web Audio API + keyboard shortcuts (S/T), Demo GIF + 12-screenshot gallery in the README, Responsive layout.)
 ## ✨ Features
 
 ### 🎮 Gamified Progression
@@ -130,6 +190,7 @@ npm run preview
 ```
 src/
 ├── components/
+<<<<<<< HEAD
 │   └── BlurText.jsx          # Animated text reveal component
 ├── data/
 │   ├── academies.js           # Academy configuration (Software + AI)
@@ -155,6 +216,45 @@ src/
 ├── App.jsx                    # Main application component
 ├── index.css                  # Complete theme and layout styles
 └── main.jsx                   # React entry point
+=======
+│   ├── Dashboard.jsx              # Mission Control — XP, streaks, today's quests
+│   ├── AcademyOverview.jsx        # Academy snapshot cards
+│   ├── AcademyLevelProgression.jsx # Collapsible level-by-level progression
+│   ├── SkillTree.jsx              # Skill tags + unlock order
+│   ├── LevelsSection.jsx          # 6 levels with quests, bosses, rewards
+│   ├── Achievements.jsx           # Trophy case across 7 categories
+│   ├── Projects.jsx               # Project vault — software vs AI
+│   ├── GitHubPlan.jsx             # GitHub repo strategy
+│   ├── ResumePlan.jsx             # Resume planning cards
+│   ├── PortfolioSection.jsx       # Portfolio structure guide
+│   ├── FinalChecklist.jsx         # December launch checklist
+│   └── BlurText.jsx               # Animated text reveal component
+├── data/
+│   ├── academies.js               # Academy configuration (Software + AI)
+│   ├── achievements.js            # 50+ achievements across 7 categories
+│   ├── aiAutomationAcademy.js     # AI Automation Academy: 6 levels, skills, projects
+│   ├── careerContent.js           # Career planning: GitHub, resume, portfolio, checklist
+│   ├── dailyQuests.js             # Daily quest types and low-energy options
+│   ├── index.js                   # Re-export barrel
+│   ├── levels.js                  # 6 monthly levels with quests and boss battles
+│   ├── misc.js                    # Color tokens, nav links, storage key
+│   ├── monthlyRoadmap.js          # Week-by-week roadmap for all 6 months
+│   ├── projects.js                # 6 flagship portfolio projects
+│   └── softwareAcademy.js         # Software Engineering Academy: 6 levels, skills, projects
+├── hooks/
+│   ├── Reveal.jsx                 # Scroll-reveal wrapper component
+│   ├── useClickSparks.js          # Mouse click particle effects
+│   ├── useCodexProgress.js        # Central progress state (quests, bosses, achievements)
+│   ├── useFloatingXP.js           # Floating "+XP" particle system
+│   ├── useReveal.js               # IntersectionObserver scroll-reveal hook
+│   ├── useSounds.js               # Web Audio API sound synthesis
+│   └── useToast.js                # Toast notification hook
+├── utils/
+│   └── rich.jsx                   # Markdown-like text rendering helper
+├── App.jsx                        # Main application component
+├── index.css                      # Complete theme and layout styles
+└── main.jsx                       # React entry point
+>>>>>>> db78518 ([200~added dark/light mode, sound effects via Web Audio API + keyboard shortcuts (S/T), Demo GIF + 12-screenshot gallery in the README, Responsive layout.)
 ```
 
 ---

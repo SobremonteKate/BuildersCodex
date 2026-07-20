@@ -20,6 +20,8 @@ import { COLORS, NAV_LINKS } from "./data/misc";
 import { useSounds } from "./hooks/useSounds";
 import { useFloatingXP } from "./hooks/useFloatingXP";
 import { useClickSparks } from "./hooks/useClickSparks";
+import { useTheme } from "./hooks/useTheme";
+import { useKeyboard } from "./hooks/useKeyboard";
 
 /* ---------- helpers ---------- */
 
@@ -61,6 +63,8 @@ export default function BuildersCodex() {
   const [activeSection, setActiveSection] = useState("");
   const [expandedAcademies, setExpandedAcademies] = useState(() => new Set(["software", "ai"]));
   const [rankingItems, setRankingItems] = useState(new Set());
+
+  const { toggleTheme, isLight } = useTheme();
 
   const {
     soundEnabled,
@@ -125,18 +129,12 @@ export default function BuildersCodex() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // keyboard shortcut: press S to toggle sound (guarded against text inputs)
-  useEffect(() => {
-    function onKey(e) {
-      if (e.key !== "s" && e.key !== "S") return;
-      if (e.ctrlKey || e.metaKey || e.altKey) return;
-      const tag = document.activeElement?.tagName;
-      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
-      setSoundEnabled(prev => !prev);
-    }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [setSoundEnabled]);
+  // keyboard shortcuts via the reusable useKeyboard hook
+  const kbBindings = React.useMemo(() => [
+    { key: "s", handler: () => setSoundEnabled(prev => !prev) },
+    { key: "t", handler: () => toggleTheme() },
+  ], [setSoundEnabled, toggleTheme]);
+  useKeyboard(kbBindings);
 
   // fanfare when a level is newly cleared (snapshot on first load, play on changes)
   useEffect(() => {
@@ -180,7 +178,7 @@ export default function BuildersCodex() {
   }, []);
 
   return (
-    <div className="codex-root">
+    <div className={`codex-root${isLight ? " light" : ""}`}>
       <div className="scroll-progress" style={{ width: `${scrollPct}%` }} />
 
       <nav className="toc">
@@ -190,11 +188,20 @@ export default function BuildersCodex() {
             <a key={id} href={`#${id}`} className={activeSection === id ? "active" : ""}>{label}</a>
           ))}
           <button
+            className="theme-toggle"
+            onClick={toggleTheme}
+            title={`Switch to ${isLight ? "dark" : "light"} theme`}
+          >
+            {isLight ? "🌙" : "☀️"}
+            <kbd className="key-hint">T</kbd>
+          </button>
+          <button
             className="sound-toggle"
             onClick={() => setSoundEnabled(prev => !prev)}
-            title={`Sound ${soundEnabled ? "ON" : "OFF"} (press S)`}
+            title={`Sound ${soundEnabled ? "ON" : "OFF"}`}
           >
             {soundEnabled ? "🔊" : "🔇"}
+            <kbd className="key-hint">S</kbd>
           </button>
         </div>
       </nav>

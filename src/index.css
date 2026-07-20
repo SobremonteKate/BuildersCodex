@@ -16,6 +16,12 @@ html, body {
   color: #e7eaf3;
 }
 
+html[data-theme="light"],
+html[data-theme="light"] body {
+  background: #f4f6fa;
+  color: #1f2937;
+}
+
 body {
   font-family: "Space Grotesk", sans-serif;
 }
@@ -23,6 +29,8 @@ body {
 #root {
   min-height: 100vh;
 }
+
+/* ---------- theme variables & transitions ---------- */
 
 .codex-root {
   --bg: #0a0d14;
@@ -52,6 +60,58 @@ body {
   --radius-sm: 8px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
+  /* Smooth theme transition on all color/bg/border properties */
+  --theme-transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, text-shadow 0.35s ease, background-image 0.35s ease;
+
+  /* Subtle overlay backgrounds — overridden in light mode */
+  --subtle-1: rgba(255,255,255,0.015);
+  --subtle-2: rgba(255,255,255,0.02);
+  --subtle-3: rgba(255,255,255,0.03);
+  --subtle-4: rgba(255,255,255,0.04);
+  --subtle-6: rgba(255,255,255,0.06);
+  --subtle-8: rgba(255,255,255,0.08);
+}
+
+/* ---------- LIGHT MODE overrides ---------- */
+
+.codex-root.light {
+  --bg: #f4f6fa;
+  --bg-raised: #e8ecf3;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0f3f8;
+  --border: #d1d5db;
+  --border-soft: #e5e7eb;
+  --text: #1f2937;
+  --text-dim: #6b7280;
+  --text-faint: #9ca3af;
+
+  --fullstack-dim: #cde9ff;
+  --cloud-dim: #ffe0c0;
+  --security-dim: #ffd0d8;
+  --data-dim: #c8f5dc;
+  --career-dim: #e5d6ff;
+  --gold-dim: #fff3cd;
+
+  --subtle-1: rgba(0,0,0,0.015);
+  --subtle-2: rgba(0,0,0,0.02);
+  --subtle-3: rgba(0,0,0,0.03);
+  --subtle-4: rgba(0,0,0,0.04);
+  --subtle-6: rgba(0,0,0,0.06);
+  --subtle-8: rgba(0,0,0,0.08);
+
+  /* Scroll-progress bar gradient — adapted for light mode */
+  --scroll-color-start: #5cd6ff;
+  --scroll-color-mid: #b98cff;
+  --scroll-color-end: #ffd166;
+}
+
+.codex-root.light {
+  --scroll-color-start: #3a9bc0;
+  --scroll-color-mid: #8a5ed4;
+  --scroll-color-end: #c99f30;
+}
+
+.codex-root {
   background:
     radial-gradient(ellipse 900px 500px at 15% -5%, rgba(92, 214, 255, 0.07), transparent 60%),
     radial-gradient(ellipse 900px 500px at 85% 10%, rgba(255, 157, 92, 0.06), transparent 60%),
@@ -62,6 +122,75 @@ body {
   min-height: 100vh;
   position: relative;
   isolation: isolate;
+}
+
+.codex-root.light {
+  background:
+    radial-gradient(ellipse 900px 500px at 15% -5%, rgba(92, 214, 255, 0.04), transparent 60%),
+    radial-gradient(ellipse 900px 500px at 85% 10%, rgba(255, 157, 92, 0.03), transparent 60%),
+    var(--bg);
+}
+
+/* light-mode subtitle contrast fix */
+.codex-root.light .cover .sub b { color: var(--text); }
+
+/* light-mode table row hover */
+.codex-root.light tbody tr:not(:first-child):hover td {
+  background: var(--subtle-2);
+}
+
+/* light-mode academy level */
+.codex-root.light .academy-level-card {
+  background: var(--subtle-2);
+}
+.codex-root.light .academy-level-card:hover {
+  background: var(--subtle-4);
+}
+
+/* light-mode skill tiles */
+.codex-root.light .skill-tile {
+  background: var(--subtle-3);
+}
+.codex-root.light .skill-tile:hover {
+  background: var(--subtle-8);
+}
+
+/* light-mode mini projects */
+.codex-root.light .academy-level-mini {
+  background: var(--subtle-2);
+}
+.codex-root.light .academy-level-mini-summary:hover {
+  background: var(--subtle-4);
+}
+
+/* light-mode academy-summary and metric cards */
+.codex-root.light .academy-summary,
+.codex-root.light .metric,
+.codex-root.light .academy-goals li {
+  background: var(--subtle-3);
+}
+
+/* light-mode resume text */
+.codex-root.light .academy-level-resume {
+  background: var(--subtle-2);
+}
+
+/* light-mode reward card */
+.codex-root.light .reward {
+  background: linear-gradient(135deg, var(--subtle-6), transparent);
+}
+
+/* light-mode boss */
+.codex-root.light .boss {
+  background: linear-gradient(135deg, var(--subtle-4), transparent);
+}
+.codex-root.light .boss.b-cleared {
+  background: linear-gradient(135deg, var(--subtle-6), transparent);
+}
+
+/* light-mode streak glow */
+.codex-root.light .streak-card::before {
+  background: radial-gradient(circle at 20% 50%, var(--subtle-6), transparent 70%);
 }
 
 .codex-root * { box-sizing: border-box; }
@@ -75,10 +204,72 @@ body {
   border-radius: 4px;
   font-size: 0.9em;
   color: var(--fullstack);
+  transition: var(--theme-transition);
 }
 
-/* faint scanline / grain texture across the whole page — subtle atmosphere,
-   not a filter you consciously notice */
+/* Theme transitions — root gets the full transition; descendant
+   elements either have it declared explicitly (if they have their own
+   transition shorthand) or inherit via .codex-root *.               */
+
+.codex-root {
+  transition: var(--theme-transition);
+}
+
+/* Catch-all for elements without their own transition shorthand */
+.codex-root * {
+  transition-property: color, background-color, border-color, box-shadow, text-shadow;
+  transition-duration: 0.35s;
+  transition-timing-function: ease;
+}
+
+/* Restore excluded elements' original transitions (they have their own
+   non-theme properties like transform/opacity that shouldn't inherit) */
+.codex-root .stat-card { transition: transform .2s var(--ease-out), border-color .2s ease, box-shadow .2s ease, var(--theme-transition); }
+.codex-root .card { transition: border-color .2s ease, transform .2s var(--ease-out), box-shadow .2s ease, var(--theme-transition); }
+.codex-root .dashboard-card { transition: border-color .2s ease, transform .2s var(--ease-out), box-shadow .2s ease, var(--theme-transition); }
+.codex-root .level { transition: border-color .25s ease, box-shadow .25s ease, var(--theme-transition); }
+.codex-root .level-badge { transition: transform .25s var(--ease-out), var(--theme-transition); }
+.codex-root .proj { transition: border-color .2s ease, var(--theme-transition); }
+.codex-root .ach { transition: filter .25s ease, transform .2s var(--ease-out), box-shadow .25s ease, border-color .25s ease, var(--theme-transition); }
+.codex-root .fab { transition: all .2s ease, var(--theme-transition); }
+.codex-root .toast { transition: all .3s var(--ease-out), var(--theme-transition); }
+.codex-root .academy-level-card { transition: border-color .2s ease, background .2s ease, var(--theme-transition); }
+.codex-root .lp-academy { transition: border-color .25s ease, var(--theme-transition); }
+.codex-root .boss { transition: box-shadow .2s ease, border-color .2s ease, background .2s ease, var(--theme-transition); }
+.codex-root .reward { transition: var(--theme-transition); }
+.codex-root .skill-tile { transition: border-color .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease, var(--theme-transition); }
+.codex-root .clickable-tag { transition: background .15s ease, border-color .15s ease, color .15s ease, var(--theme-transition); }
+.codex-root .clickable-project { transition: color .15s ease, var(--theme-transition); }
+.codex-root .lp-toggle { transition: all .2s ease, var(--theme-transition); }
+.codex-root .academy-level-mini { transition: border-color .2s ease, var(--theme-transition); }
+.codex-root .alp-fill { transition: width .35s var(--ease-out), var(--theme-transition); }
+.codex-root .overall-progress-fill { transition: width .6s var(--ease-out), var(--theme-transition); }
+.codex-root .pbar-fill { transition: width .5s var(--ease-out), var(--theme-transition); }
+.codex-root .toc a { transition: border-color .18s ease, color .18s ease, background .18s ease, var(--theme-transition); }
+.codex-root .quest-list li { transition: background .15s ease, color .15s ease, var(--theme-transition); }
+.codex-root .lp-academy-body { transition: max-height .45s var(--ease-out), padding .3s ease, var(--theme-transition); }
+.codex-root .lp-level { transition: opacity .35s var(--ease-out), transform .35s var(--ease-out), var(--theme-transition); }
+.codex-root .reveal { transition: opacity .55s var(--ease-out), transform .55s var(--ease-out), var(--theme-transition); }
+
+/* ---------- theme-aware shadow overrides for light mode ---------- */
+
+.codex-root.light .card:hover {
+  box-shadow: 0 14px 30px -18px rgba(0, 0, 0, 0.15);
+}
+.codex-root.light .dashboard-card:hover {
+  box-shadow: 0 16px 30px -20px rgba(0, 0, 0, 0.12);
+}
+.codex-root.light .stat-card:hover {
+  box-shadow: 0 10px 24px -14px rgba(255, 209, 102, 0.5);
+}
+.codex-root.light .fab {
+  box-shadow: 0 8px 22px -8px rgba(0, 0, 0, 0.15);
+}
+.codex-root.light .toast {
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.15);
+}
+
+/* faint scanline / grain texture across the whole page */
 .codex-root::before {
   content: "";
   position: fixed;
@@ -94,6 +285,9 @@ body {
     transparent 3px
   );
 }
+.codex-root.light::before {
+  opacity: 0;
+}
 .codex-root > * { position: relative; z-index: 1; }
 
 /* ---------- nav ---------- */
@@ -106,14 +300,14 @@ nav.toc {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
 }
-.toc-inner { max-width: 1180px; margin: 0 auto; padding: 12px 28px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
-.toc-brand { font-family: "Press Start 2P", monospace; font-size: 10px; color: var(--gold); margin-right: 14px; white-space: nowrap; text-shadow: 0 0 10px rgba(255, 209, 102, 0.35); }
+.toc-inner { max-width: 1180px; margin: 0 auto; padding: 12px 28px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }.toc-brand { font-family: "Press Start 2P", monospace; font-size: 10px; color: var(--gold); margin-right: 14px; white-space: nowrap; text-shadow: 0 0 10px rgba(255, 209, 102, 0.35); transition: var(--theme-transition); }
+.codex-root.light .toc-brand { text-shadow: 0 0 6px rgba(255, 209, 102, 0.2); }
 .toc a { font-family: "JetBrains Mono", monospace; font-size: 12px; padding: 7px 11px; border-radius: 20px; color: var(--text-dim); text-decoration: none; border: 1px solid transparent; white-space: nowrap; transition: border-color .18s ease, color .18s ease, background .18s ease; }
 .toc a:hover { border-color: var(--border); color: var(--text); background: var(--bg-card); }
 .toc a.active { color: var(--text); background: var(--bg-card); border-color: var(--gold-dim); box-shadow: 0 0 0 1px var(--gold-dim) inset; }
 
-/* sound toggle */
-.sound-toggle {
+/* nav toggles — theme & sound */
+.theme-toggle {
   margin-left: auto;
   font-family: "JetBrains Mono", monospace;
   font-size: 12px;
@@ -124,13 +318,57 @@ nav.toc {
   border: 1px solid transparent;
   cursor: pointer;
   white-space: nowrap;
-  transition: border-color .18s ease, color .18s ease, background .18s ease;
+  transition: border-color .18s ease, color .18s ease, background .18s ease, var(--theme-transition);
+  line-height: 1;
+}
+.theme-toggle:hover {
+  border-color: var(--border);
+  color: var(--text);
+  background: var(--bg-card);
+}
+.sound-toggle {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  padding: 7px 11px;
+  border-radius: 20px;
+  color: var(--text-dim);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color .18s ease, color .18s ease, background .18s ease, var(--theme-transition);
   line-height: 1;
 }
 .sound-toggle:hover {
   border-color: var(--border);
   color: var(--text);
   background: var(--bg-card);
+}
+
+/* key-hint badge inside nav toggle buttons */
+.key-hint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  margin-left: 4px;
+  border-radius: 3px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--text-faint);
+  background: var(--subtle-4);
+  border: 1px solid var(--border);
+  vertical-align: middle;
+  transition: var(--theme-transition);
+}
+
+button:hover .key-hint {
+  color: var(--text-dim);
+  background: var(--subtle-6);
+  border-color: var(--border-soft);
 }
 
 /* ---------- cover / hero ---------- */
@@ -177,6 +415,10 @@ nav.toc {
   text-shadow: 0 0 6px rgba(185, 140, 255, 0.35), 0 0 18px rgba(92, 214, 255, 0.18);
 }
 
+.codex-root.light .codex-title {
+  text-shadow: 0 0 8px rgba(185, 140, 255, 0.2), 0 0 20px rgba(92, 214, 255, 0.1);
+}
+
 .codex-title span {
   display: inline-block;
   color: transparent;
@@ -184,6 +426,10 @@ nav.toc {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.codex-root.light .codex-title span {
+  background: linear-gradient(90deg, #1f2937, #b98cff 60%, #5cd6ff);
 }
 
 .cover .sub { font-size: 17px; color: var(--text-dim); max-width: 680px; margin: 0 0 30px; }
@@ -306,6 +552,10 @@ nav.toc {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
   width: 40%; animation: pbar-shimmer 2.2s ease-in-out infinite;
+}
+
+.codex-root.light .pbar-fill::after {
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.08), transparent);
 }
 
 /* ---------- levels ---------- */
@@ -715,11 +965,22 @@ tbody tr:not(:first-child):hover td { background: rgba(255, 255, 255, 0.015); }
   animation: pbar-shimmer 2.4s ease-in-out infinite;
 }
 
+.codex-root.light .alp-fill::after {
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.06), transparent);
+}
+
 /* ---------- lightweight CSS cursor — zero JS overhead ---------- */
 
 .codex-root {
   cursor:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='10' cy='10' r='6' fill='none' stroke='%23ffd166' stroke-width='1.2' opacity='.7'/%3E%3Ccircle cx='10' cy='10' r='1.5' fill='%23ffd166'/%3E%3C/svg%3E")
+    10 10,
+    auto;
+}
+
+.codex-root.light {
+  cursor:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='10' cy='10' r='6' fill='none' stroke='%23d97706' stroke-width='1.2' opacity='.5'/%3E%3Ccircle cx='10' cy='10' r='1.5' fill='%23d97706'/%3E%3C/svg%3E")
     10 10,
     auto;
 }
@@ -940,13 +1201,16 @@ tbody tr:not(:first-child):hover td { background: rgba(255, 255, 255, 0.015); }
   animation: fire-pulse 1.2s ease-in-out infinite;
   font-size: 15px;
   margin-right: 2px;
-}
-.streak-value {
+}.streak-value {
   display: flex;
   align-items: baseline;
   gap: 4px;
   color: var(--cloud);
   text-shadow: 0 0 20px rgba(255, 157, 92, 0.3);
+}
+
+.codex-root.light .streak-value {
+  text-shadow: 0 0 10px rgba(255, 157, 92, 0.15);
 }
 .streak-unit {
   font-family: "JetBrains Mono", monospace;
@@ -1006,7 +1270,12 @@ tbody tr:not(:first-child):hover td { background: rgba(255, 255, 255, 0.015); }
 footer { padding: 44px 0 90px; text-align: center; color: var(--text-faint); font-size: 12.5px; }
 h3.sub-h { font-size: 16px; margin: 0 0 12px; color: var(--text); }
 
-.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, #5cd6ff, #b98cff, #ffd166); z-index: 100; transition: width .1s linear; }
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: linear-gradient(90deg, var(--scroll-color-start), var(--scroll-color-mid), var(--scroll-color-end));
+  z-index: 100;
+  transition: width .1s linear, background 0.35s ease;
+}
 
 .overall-progress-wrap { margin-top: 22px; max-width: 520px; }
 .overall-progress-label { display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--text-faint); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .06em; }
@@ -1017,6 +1286,10 @@ h3.sub-h { font-size: 16px; margin: 0 0 12px; color: var(--text); }
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
   width: 30%; animation: pbar-shimmer 2.6s ease-in-out infinite;
+}
+
+.codex-root.light .overall-progress-fill::after {
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.08), transparent);
 }
 .overall-progress-hint { font-size: 11.5px; color: var(--text-faint); margin-top: 8px; }
 
