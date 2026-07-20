@@ -43,7 +43,6 @@ Career OS transforms a 6-month career roadmap into an interactive RPG-style dash
 
 ---
 
-=======
 ## 🖼️ Gallery
 
 <p align="center">
@@ -211,7 +210,6 @@ src/
 ├── App.jsx                    # Main application component
 ├── index.css                  # Complete theme and layout styles
 └── main.jsx                   # React entry point
-=======
 │   ├── Dashboard.jsx              # Mission Control — XP, streaks, today's quests
 │   ├── AcademyOverview.jsx        # Academy snapshot cards
 │   ├── AcademyLevelProgression.jsx # Collapsible level-by-level progression
