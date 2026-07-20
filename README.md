@@ -7,7 +7,6 @@
 ![Vite](https://img.shields.io/badge/Vite-8-646cff?style=flat-square&logo=vite)
 ![License](https://img.shields.io/badge/license-MIT-ffd166?style=flat-square)
 
-<<<<<<< HEAD
 ---
 
 ## 🎯 Overview
