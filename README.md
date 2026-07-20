@@ -38,7 +38,6 @@ Career OS transforms a 6-month career roadmap into an interactive RPG-style dash
 - **Earn achievements** across Git, Cloud, Security, Data/AI, Portfolio, and Career categories
 - **Keep momentum visible** with XP tracking, progress bars, and floating particle effects
 
->>>>>>> db78518 ([200~added dark/light mode, sound effects via Web Audio API + keyboard shortcuts (S/T), Demo GIF + 12-screenshot gallery in the README, Responsive layout.)
 <p align="center">
   <i>✦ Click any quest, boss battle, or achievement badge — progress saves automatically ✦</i>
 </p>
@@ -83,7 +82,6 @@ Career OS transforms a 6-month career roadmap into an interactive RPG-style dash
 
 ---
 
->>>>>>> db78518 ([200~added dark/light mode, sound effects via Web Audio API + keyboard shortcuts (S/T), Demo GIF + 12-screenshot gallery in the README, Responsive layout.)
 ## ✨ Features
 
 ### 🎮 Gamified Progression
